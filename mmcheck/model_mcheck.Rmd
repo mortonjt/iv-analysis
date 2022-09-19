@@ -1,0 +1,252 @@
+---
+title: "Model misspecification check"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+<!-- ```{bash setup, warning=FALSE} -->
+<!-- runipy /Users/akmishra/Library/CloudStorage/OneDrive-InsideMDAnderson/factorIV/iv-analysis/mmcheck/simulations.ipynb -->
+<!-- ``` -->
+
+## Analysis of forward model output
+
+```{r warning = FALSE, message = FALSE}
+## Load all the data in the work space
+library(tidyverse)
+Q <- read.csv('sim_data/Q.csv', header = F) %>% as.matrix()
+Z <- read.csv('sim_data/Z.csv', header = F) %>% as.matrix()
+X <- read.csv('sim_data/X.csv', header = F) %>% as.matrix()
+Y <- read.csv('sim_data/Y.csv', header = F) %>% as.matrix()
+beta <- read.csv('sim_data/beta.csv', header = F) %>% as.matrix()
+betaU <- read.csv('sim_data/betaU.csv', header = F) %>% as.matrix()
+betaV <- read.csv('sim_data/betaV.csv', header = F) %>% as.matrix()
+alpha <- read.csv('sim_data/alpha.csv', header = F) %>% as.matrix()
+gam <- read.csv('sim_data/gam.csv', header = F) %>% as.matrix()
+eta <- read.csv('sim_data/eta.csv', header = F) %>% as.matrix()
+X1 <- read.csv('sim_data/X1.csv', header = F) %>% as.matrix()
+X2 <- read.csv('sim_data/X2.csv', header = F) %>% as.matrix()
+
+k = ncol(betaU)    # number of latent dimensions
+n = nrow(X)  # number of samples
+d = ncol(X)  # number of microbes
+m = ncol(Z)   # number of instruments
+c = ncol(Q)    # number of confounders
+
+# U = Z @ betaU
+# X = Z @ beta + Q @ gam + eps
+# Y = U @ alpha + Q @ eta + delta
+
+```
+
+## IV analysis: Full model 
+
+ --- Fit model 
+```{r echo = FALSE}
+library(gofar)
+family <- list(gaussian(), binomial(), poisson())
+control <- gofar_control()
+nlam <- 50 # number of tuning parameter
+SD <- 123
+
+# Model fitting begins:
+control$epsilon <- 1e-7
+control$spU <- 1.1
+control$spV <- 1.1
+control$maxit <- 1000
+control$gamma0 <- 1
+control$equalphi <- 1
+control$lamMaxFac <- 1
+control$lamMinFac <- 1e-10
+familygroup <- rep(1,d)
+control$se1 <- 1.5
+
+
+# Model fitting: GOFAR(S) (full data)
+set.seed(SD)
+rank.est <- 5
+# fit.seqT <- gofar_s(scale(X, center = F, scale = F),
+#                     scale(cbind(Q,Z), center = F, scale = F), cIndex = 1:c,
+#                    nrank = rank.est, family = family,
+#                    nlambda = nlam, familygroup = familygroup,
+#                    control = control, nfold = 5
+# )
+# save(fit.seqT, file = 'mmcheck.rds')
+load( 'mmcheck.rds')
+# save(list=ls(),file = ofile)
+plot(colMeans(fit.seqT$fit[[1]]$dev))
+plot(colMeans(fit.seqT$fit[[2]]$dev))
+plot(colMeans(fit.seqT$fit[[3]]$dev))
+plot(colMeans(fit.seqT$fit[[4]]$dev))
+# plot(colMeans(fit.seqT$fit[[5]]$dev))
+# plot(colMeans(fit.seqT$fit[[6]]$dev))
+# plot(colMeans(fit.seqT$fit[[7]]$dev))
+# plot(colMeans(fit.seqT$fit[[8]]$dev))
+```
+ --- Fit model 
+```{r}
+U <- Z %*% fit.seqT$U %*% diag(fit.seqT$D)
+err <- rep(0,50)
+for (i in 1:50) {
+  ind <- sample(n, 150)
+  fit.ls <- lm(Y[ind,] ~ U[ind,]+Q[ind,])
+  Y.hat <- cbind(1,U[-ind,],Q[-ind,]) %*%coef(fit.ls)
+  err[i] <- sqrt(sum((Y[-ind,]-Y.hat)^2)/50)
+}
+c(mean(err),sd(err))
+# summary(fit.ls)
+# coef(fit.ls)
+# c(alpha,eta)
+# Y.hat <- predict(fit.ls)
+# sqrt(sum((Y-Y.hat)^2))
+
+
+```
+ 
+
+
+## IV analysis: Misspecified model
+
+--- mispecified model 
+
+```{r echo = FALSE}
+library(gofar)
+family <- list(gaussian(), binomial(), poisson())
+control <- gofar_control()
+nlam <- 50 # number of tuning parameter
+SD <- 123
+
+# Model fitting begins:
+control$epsilon <- 1e-7
+control$spU <- 1.1
+control$spV <- 1.1
+control$maxit <- 1000
+control$gamma0 <- 1
+control$equalphi <- 1
+control$lamMaxFac <- 1
+control$lamMinFac <- 1e-10
+familygroup <- rep(1,ncol(X1))
+control$se1 <- 1.5
+
+
+# Model fitting: GOFAR(S) (full data)
+set.seed(SD)
+rank.est <- 5
+# fit.seqMS <- gofar_s(scale(X1, center = F, scale = F),
+#                     scale(cbind(Q,Z), center = F, scale = F), cIndex = 1:c,
+#                    nrank = rank.est, family = family,
+#                    nlambda = nlam, familygroup = familygroup,
+#                    control = control, nfold = 5
+# )
+# save(fit.seqMS, file = 'mmcheck_ms.rds')
+load( 'mmcheck_ms.rds')
+# save(list=ls(),file = ofile)
+plot(colMeans(fit.seqMS$fit[[1]]$dev))
+plot(colMeans(fit.seqMS$fit[[2]]$dev))
+plot(colMeans(fit.seqMS$fit[[3]]$dev))
+plot(colMeans(fit.seqMS$fit[[4]]$dev))
+plot(colMeans(fit.seqMS$fit[[5]]$dev))
+# plot(colMeans(fit.seqT$fit[[6]]$dev))
+# plot(colMeans(fit.seqT$fit[[7]]$dev))
+# plot(colMeans(fit.seqT$fit[[8]]$dev))
+```
+
+
+```{r}
+U <- Z %*% fit.seqMS$U[,1:3] %*% diag(fit.seqMS$D[1:3])
+err <- rep(0,50)
+for (i in 1:50) {
+  ind <- sample(n, 150)
+  fit.ls <- lm(Y[ind,] ~ U[ind,]+Q[ind,])
+  Y.hat <- cbind(1,U[-ind,],Q[-ind,]) %*%coef(fit.ls)
+  err[i] <- sqrt(sum((Y[-ind,]-Y.hat)^2)/50)
+}
+c(mean(err),sd(err))
+
+# fit.ls <- lm(Y ~ U+Q)
+# summary(fit.ls)
+# coef(fit.ls)
+# c(alpha,eta)
+# Y.hat <- predict(fit.ls)
+# sqrt(sum((Y-Y.hat)^2))
+
+```
+
+
+
+## IV analysis: Misspecified model instuments replaces 
+
+
+--- mispecified model 
+
+```{r echo = FALSE}
+library(gofar)
+family <- list(gaussian(), binomial(), poisson())
+control <- gofar_control()
+nlam <- 50 # number of tuning parameter
+SD <- 123
+
+# Model fitting begins:
+control$epsilon <- 1e-7
+control$spU <- 1.1
+control$spV <- 1.1
+control$maxit <- 1000
+control$gamma0 <- 1
+control$equalphi <- 1
+control$lamMaxFac <- 1
+control$lamMinFac <- 1e-10
+familygroup <- rep(1,ncol(X))
+control$se1 <- 1.5
+
+
+# Model fitting: GOFAR(S) (full data)
+set.seed(SD)
+rank.est <- 5
+# fit.seqMSI <- gofar_s(scale(X, center = F, scale = F),
+#                     scale(cbind(Q,Z[,-1]), center = F, scale = F), cIndex = 1:c,
+#                    nrank = rank.est, family = family,
+#                    nlambda = nlam, familygroup = familygroup,
+#                    control = control, nfold = 5
+# )
+# save(fit.seqMSI, file = 'mmcheck_msi.rds')
+load( 'mmcheck_msi.rds')
+# save(list=ls(),file = ofile)
+plot(colMeans(fit.seqMSI$fit[[1]]$dev))
+plot(colMeans(fit.seqMSI$fit[[2]]$dev))
+plot(colMeans(fit.seqMSI$fit[[3]]$dev))
+plot(colMeans(fit.seqMSI$fit[[4]]$dev))
+plot(colMeans(fit.seqMSI$fit[[5]]$dev))
+# plot(colMeans(fit.seqT$fit[[6]]$dev))
+# plot(colMeans(fit.seqT$fit[[7]]$dev))
+# plot(colMeans(fit.seqT$fit[[8]]$dev))
+```
+
+
+
+
+
+
+```{r}
+U <- Z[,-1] %*% fit.seqMSI$U[,1:3] %*% diag(fit.seqMSI$D[1:3])
+err <- rep(0,50)
+for (i in 1:50) {
+  ind <- sample(n, 150)
+  fit.ls <- lm(Y[ind,] ~ U[ind,]+Q[ind,])
+  Y.hat <- cbind(1,U[-ind,],Q[-ind,]) %*%coef(fit.ls)
+  err[i] <- sqrt(sum((Y[-ind,]-Y.hat)^2)/50)
+}
+c(mean(err),sd(err))
+
+# fit.ls <- lm(Y ~ U+Q)
+# summary(fit.ls)
+# coef(fit.ls)
+# c(alpha,eta)
+# Y.hat <- predict(fit.ls)
+# sqrt(sum((Y-Y.hat)^2))
+
+```
+
+
