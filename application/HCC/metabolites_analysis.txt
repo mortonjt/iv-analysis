@@ -1,0 +1,304 @@
+no IgA
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.1107  -0.8103  -0.6515   1.2356   2.1135  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                   -1.23241    0.15740  -7.830 4.89e-15 ***
+as.matrix(cbind(Q, LF))age    -0.04239    0.17969  -0.236  0.81350    
+as.matrix(cbind(Q, LF))weight  0.43359    0.14996   2.891  0.00384 ** 
+as.matrix(cbind(Q, LF))Strain  0.27182    0.40458   0.672  0.50167    
+as.matrix(cbind(Q, LF))1       0.16909    0.14580   1.160  0.24616    
+as.matrix(cbind(Q, LF))2      -0.13548    0.12348  -1.097  0.27258    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 463.21  on 407  degrees of freedom
+Residual deviance: 448.44  on 402  degrees of freedom
+AIC: 460.44
+
+Number of Fisher Scoring iterations: 4
+
+[1] "--------------------------------------"
+obese
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-2.12433  -0.29291  -0.00008   0.73903   2.01758  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                    -1.1573     0.3169  -3.651 0.000261 ***
+as.matrix(cbind(Q, LF))age     -0.6915     0.2462  -2.808 0.004979 ** 
+as.matrix(cbind(Q, LF))weight   0.9770     0.1843   5.300 1.16e-07 ***
+as.matrix(cbind(Q, LF))Strain -18.8224   697.6766  -0.027 0.978477    
+as.matrix(cbind(Q, LF))1        2.3622     0.4319   5.469 4.53e-08 ***
+as.matrix(cbind(Q, LF))2       -0.4447     0.3879  -1.146 0.251681    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 558.44  on 407  degrees of freedom
+Residual deviance: 298.99  on 402  degrees of freedom
+AIC: 310.99
+
+Number of Fisher Scoring iterations: 17
+
+[1] "--------------------------------------"
+NASH
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.1548  -0.6746   0.5073   0.7741   2.0210  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                   -0.03285    0.15054  -0.218 0.827263    
+as.matrix(cbind(Q, LF))age     0.65707    0.17911   3.669 0.000244 ***
+as.matrix(cbind(Q, LF))weight -0.63032    0.16325  -3.861 0.000113 ***
+as.matrix(cbind(Q, LF))Strain  1.00762    0.44746   2.252 0.024331 *  
+as.matrix(cbind(Q, LF))1       1.65459    0.30816   5.369  7.9e-08 ***
+as.matrix(cbind(Q, LF))2      -0.10767    0.35005  -0.308 0.758411    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 529.79  on 407  degrees of freedom
+Residual deviance: 401.40  on 402  degrees of freedom
+AIC: 413.4
+
+Number of Fisher Scoring iterations: 6
+
+[1] "--------------------------------------"
+HCC
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-2.44116  -0.24790   0.09779   0.61096   1.84190  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                    -3.2126     0.5140  -6.250 4.11e-10 ***
+as.matrix(cbind(Q, LF))age      2.4408     0.3354   7.277 3.42e-13 ***
+as.matrix(cbind(Q, LF))weight  -1.0863     0.2094  -5.188 2.12e-07 ***
+as.matrix(cbind(Q, LF))Strain   6.2171     1.4441   4.305 1.67e-05 ***
+as.matrix(cbind(Q, LF))1        3.4265     0.4838   7.082 1.42e-12 ***
+as.matrix(cbind(Q, LF))2        1.2552     0.2394   5.244 1.57e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 564.81  on 407  degrees of freedom
+Residual deviance: 269.10  on 402  degrees of freedom
+AIC: 281.1
+
+Number of Fisher Scoring iterations: 7
+
+[1] "--------------------------------------"
+T1d
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-2.154   0.000   0.000   0.000   1.598  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)   
+(Intercept)                    -71.340     27.933  -2.554  0.01065 * 
+as.matrix(cbind(Q, LF))age     -45.788     18.797  -2.436  0.01486 * 
+as.matrix(cbind(Q, LF))weight   -3.171      1.155  -2.747  0.00602 **
+as.matrix(cbind(Q, LF))Strain  -12.259      5.263  -2.329  0.01985 * 
+as.matrix(cbind(Q, LF))1        29.689     12.199   2.434  0.01495 * 
+as.matrix(cbind(Q, LF))2        14.636      6.070   2.411  0.01590 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 333.629  on 407  degrees of freedom
+Residual deviance:  29.204  on 402  degrees of freedom
+AIC: 41.204
+
+Number of Fisher Scoring iterations: 14
+
+[1] "--------------------------------------"
+mon B cells
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-2.727e-04  -2.100e-08  -2.100e-08  -2.100e-08   1.085e-04  
+
+Coefficients:
+                                Estimate Std. Error z value Pr(>|z|)
+(Intercept)                    -134.3648 15324.4767  -0.009    0.993
+as.matrix(cbind(Q, LF))age      -47.9471  9921.5131  -0.005    0.996
+as.matrix(cbind(Q, LF))weight     0.2362 11555.6187   0.000    1.000
+as.matrix(cbind(Q, LF))Strain   -45.4338 31017.5735  -0.001    0.999
+as.matrix(cbind(Q, LF))1       -222.1696 24498.2316  -0.009    0.993
+as.matrix(cbind(Q, LF))2        269.0090 29196.3171   0.009    0.993
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 7.8751e+01  on 407  degrees of freedom
+Residual deviance: 2.0466e-07  on 402  degrees of freedom
+AIC: 12
+
+Number of Fisher Scoring iterations: 25
+
+[1] "--------------------------------------"
+no B cell
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.0482  -0.3429  -0.2458  -0.1701   2.7332  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                   -3.56361    0.34992 -10.184  < 2e-16 ***
+as.matrix(cbind(Q, LF))age    -0.01499    0.37147  -0.040  0.96782    
+as.matrix(cbind(Q, LF))weight -0.80140    0.32600  -2.458  0.01396 *  
+as.matrix(cbind(Q, LF))Strain  1.62753    0.61227   2.658  0.00786 ** 
+as.matrix(cbind(Q, LF))1      -0.02132    0.59561  -0.036  0.97145    
+as.matrix(cbind(Q, LF))2       0.89675    0.67205   1.334  0.18209    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 209.24  on 407  degrees of freedom
+Residual deviance: 169.21  on 402  degrees of freedom
+AIC: 181.21
+
+Number of Fisher Scoring iterations: 8
+
+[1] "--------------------------------------"
+no T cell
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-1.51731  -0.01106  -0.00006   0.00000   2.52821  
+
+Coefficients:
+                               Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                    -63.1034    17.6802  -3.569 0.000358 ***
+as.matrix(cbind(Q, LF))age       2.3025     1.0402   2.214 0.026863 *  
+as.matrix(cbind(Q, LF))weight    1.8796     0.7011   2.681 0.007341 ** 
+as.matrix(cbind(Q, LF))Strain  -23.9621  2390.3221  -0.010 0.992002    
+as.matrix(cbind(Q, LF))1        28.4395     8.9965   3.161 0.001571 ** 
+as.matrix(cbind(Q, LF))2        45.4264    12.7321   3.568 0.000360 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 115.186  on 407  degrees of freedom
+Residual deviance:  34.512  on 402  degrees of freedom
+AIC: 46.512
+
+Number of Fisher Scoring iterations: 20
+
+[1] "--------------------------------------"
+lean
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-2.414   0.000   0.000   0.000   2.108  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                   -24.9263     5.3851  -4.629 3.68e-06 ***
+as.matrix(cbind(Q, LF))age      0.6062     0.4131   1.467  0.14227    
+as.matrix(cbind(Q, LF))weight   3.7825     1.2497   3.027  0.00247 ** 
+as.matrix(cbind(Q, LF))Strain  -4.7676     1.6740  -2.848  0.00440 ** 
+as.matrix(cbind(Q, LF))1      -15.8444     3.1430  -5.041 4.63e-07 ***
+as.matrix(cbind(Q, LF))2      -18.5537     3.9983  -4.640 3.48e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 252.745  on 407  degrees of freedom
+Residual deviance:  57.569  on 402  degrees of freedom
+AIC: 69.569
+
+Number of Fisher Scoring iterations: 12
+
+[1] "--------------------------------------"
+no IgM
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+       Min          1Q      Median          3Q         Max  
+-1.453e-04  -2.100e-08  -2.100e-08  -2.100e-08   1.852e-04  
+
+Coefficients:
+                               Estimate Std. Error z value Pr(>|z|)
+(Intercept)                     -86.210  15352.324  -0.006    0.996
+as.matrix(cbind(Q, LF))age       28.695  11961.466   0.002    0.998
+as.matrix(cbind(Q, LF))weight     1.889  10879.554   0.000    1.000
+as.matrix(cbind(Q, LF))Strain    29.170  33463.043   0.001    0.999
+as.matrix(cbind(Q, LF))1       -148.129  29544.297  -0.005    0.996
+as.matrix(cbind(Q, LF))2        190.485  31393.464   0.006    0.995
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4.4960e+01  on 407  degrees of freedom
+Residual deviance: 9.9038e-08  on 402  degrees of freedom
+AIC: 12
+
+Number of Fisher Scoring iterations: 25
+
+[1] "--------------------------------------"
+adenomas
+Call:
+glm(formula = phenotypes[, i] ~ as.matrix(cbind(Q, LF)), family = "binomial")
+
+Deviance Residuals: 
+   Min      1Q  Median      3Q     Max  
+-1.943   0.000   0.000   0.000   1.739  
+
+Coefficients:
+                                Estimate Std. Error z value Pr(>|z|)   
+(Intercept)                    -23.11005    8.41851  -2.745  0.00605 **
+as.matrix(cbind(Q, LF))age       4.31365    1.44724   2.981  0.00288 **
+as.matrix(cbind(Q, LF))weight   -3.48746    2.12838  -1.639  0.10131   
+as.matrix(cbind(Q, LF))Strain  -10.38804 2877.25680  -0.004  0.99712   
+as.matrix(cbind(Q, LF))1       -17.80947    7.39890  -2.407  0.01608 * 
+as.matrix(cbind(Q, LF))2        -0.07999    4.38168  -0.018  0.98543   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 153.641  on 407  degrees of freedom
+Residual deviance:  39.115  on 402  degrees of freedom
+AIC: 51.115
+
+Number of Fisher Scoring iterations: 20
+
+[1] "--------------------------------------"
